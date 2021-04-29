@@ -67,6 +67,12 @@ body {
     filter: grayscale(.5);
 }
 
+.dragged.drop-zone {
+    background-color: rgb(231, 236, 240);
+    border-color: rgb(98, 119, 163);
+    transition: all .2s ease;
+}
+
 .dragged .icon-container .left {
     transform: rotate(10deg) translateX(20px) scale(.9);
     transform-origin: bottom;
@@ -81,4 +87,13 @@ body {
 .dragged .icon-container .center {
     transform: translateY(-5px);
     z-index: 2;
+}
+
+#fileInput {
+    display: none;
+}
+
+.browse {
+    color: rgb(84, 127, 219);
+    cursor: pointer;
 }
