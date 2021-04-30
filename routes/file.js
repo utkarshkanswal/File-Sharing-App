@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const multer = require("multer");
 const path = require("path");
+const File = require("../models/file");
+const {
+    v4: uuid4
+} = require("uuid");
 
 
 let storage = multer.diskStorage({
@@ -22,26 +26,34 @@ let upload = multer({
 }).single('myfile');
 
 router.post("/", (req, res) => {
-
-    //validate request
-
-    if (!req.file) {
-        return res.json({
-            error: "All fields are required"
-        });
-    }
-
-
     //store files
+    upload(req, res, async (err) => {
+        //validate request
+        if (!req.file) {
+            return res.json({
+                error: "All fields are required"
+            });
+        }
 
-    upload(req, res, (err) => {
         if (err) {
             return res.status(500).send({
                 error: err.message
             });
         }
+        //Store into DataBase
+        const file = new File({
+            filename: req.file.filename,
+            path: req.file.path,
+            size: req.file.size,
+            uuid: uuid4(),
+        });
+        const response = await file.save();
 
-    })
+        return res.json({
+            file: `${process.env.APP_BASE_URL}/files/${response.uuid}`
+        });
+    });
+
 
 
 });

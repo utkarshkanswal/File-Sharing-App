@@ -15,13 +15,13 @@ app.set("views", __dirname + "/views"); // set express to look in this folder to
 app.use(express.urlencoded());
 
 app.use("/api/files", require("./routes/file"));
+app.use("/files", require("./routes/show"));
 
 
 app.get("/", function (req, res) {
-
     res.render("index");
-
 });
+
 
 
 app.listen(PORT, () => {
