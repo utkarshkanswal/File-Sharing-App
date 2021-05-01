@@ -11,6 +11,13 @@ const uploadtitle = document.querySelector(".upload-title");
 const copyicon = document.querySelector(".copy-icon");
 const message = document.querySelector(".message");
 const fileurl = document.querySelector("#fileurl");
+const emailcontainer = document.querySelector(".email-container");
+const formcontainer = document.querySelector(".form-container");
+
+const messageemail = document.querySelector(".message-email");
+
+
+
 
 
 const host = "http://localhost:3000/";
@@ -22,8 +29,6 @@ dropZone.addEventListener("dragover", (e) => {
     if (!dropZone.classList.contains("dragged")) {
         dropZone.classList.add("dragged");
     }
-
-
 });
 dropZone.addEventListener("dragleave", () => {
 
@@ -40,11 +45,14 @@ dropZone.addEventListener("drop", (e) => {
         fileInput.files = files;
         progresscontainer.classList.add("dragged");
         downloadcontainer.classList.add("dragged");
+        emailcontainer.classList.add("dragged");
         percentcontainer.style.display = `block`;
         uploadtitle.style.display = `block`;
         message.style.display = `block`;
         copyicon.style.display = `block`;
         fileurl.style.display = 'block';
+        formcontainer.style.display = `block`;
+        messageemail.style.display = `block`;
         uploadFile();
     }
 });
@@ -52,11 +60,15 @@ dropZone.addEventListener("drop", (e) => {
 fileInput.addEventListener("change", () => {
     progresscontainer.classList.add("dragged");
     downloadcontainer.classList.add("dragged");
+    emailcontainer.classList.add("dragged");
     percentcontainer.style.display = `block`;
     uploadtitle.style.display = `block`;
     message.style.display = `block`;
+    messageemail.style.display = `block`;
     copyicon.style.display = `block`;
+    formcontainer.style.display = `block`;
     fileurl.style.display = 'block';
+
     uploadFile();
 });
 browse.addEventListener("click", () => {
