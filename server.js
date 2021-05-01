@@ -16,6 +16,7 @@ app.use(express.urlencoded());
 
 app.use("/api/files", require("./routes/file"));
 app.use("/files", require("./routes/show"));
+app.use("/download", require("./routes/download"));
 
 
 app.get("/", function (req, res) {
